@@ -10,6 +10,7 @@ class Service
 {
 
     protected string $model;
+    protected array $with = [];
     protected $result;
 
     public function paginate()
@@ -19,7 +20,7 @@ class Service
 
     public function find(int $id)
     {
-        $this->result = $this->model::find($id);
+        $this->result = $this->model::with($this->with)->find($id);
 
         if (empty($this->result)) {
             throw new Exception("Registro não encontrado", Response::HTTP_NOT_FOUND);
