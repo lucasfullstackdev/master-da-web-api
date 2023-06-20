@@ -12,6 +12,7 @@ class Shopping extends Model
     protected $table = 'shopping';
     protected $fillable = [
         'products',
+        'total',
         'user_id'
     ];
 }
