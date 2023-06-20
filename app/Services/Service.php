@@ -18,6 +18,12 @@ class Service
         return $this->model::paginate();
     }
 
+    public function with(array $with)
+    {
+        $this->with = $with;
+        return $this;
+    }
+
     public function find(int $id)
     {
         $this->result = $this->model::with($this->with)->find($id);

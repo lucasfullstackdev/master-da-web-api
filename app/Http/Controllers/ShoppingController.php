@@ -2,24 +2,34 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\Shopping\Store;
+use App\Http\Requests\Shopping\Update;
+use App\Services\ShoppingService;
 
 class ShoppingController extends Controller
 {
+    public function __construct(public readonly ShoppingService $service)
+    {
+    }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        dd('shopping - index');
+        return response()->json(
+            $this->service->paginate()
+        );
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Store $request)
     {
-        dd('shopping - store');
+        return response()->json(
+            $this->service->store($request)
+        );
     }
 
     /**
@@ -27,15 +37,19 @@ class ShoppingController extends Controller
      */
     public function show(string $id)
     {
-        dd('shopping - show');
+        return response()->json(
+            $this->service->find($id)->show()
+        );
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Update $request, string $id)
     {
-        dd('shopping - update');
+        return response()->json(
+            $this->service->find($id)->update($request)
+        );
     }
 
     /**
@@ -43,11 +57,15 @@ class ShoppingController extends Controller
      */
     public function destroy(string $id)
     {
-        dd('shopping - destroy');
+        return response()->json(
+            $this->service->find($id)->delete()
+        );
     }
 
     public function client(int $id)
     {
-        dd('shopping - client');
+        return response()->json(
+            $this->service->with(['client'])->find($id)->show()
+        );
     }
 }
