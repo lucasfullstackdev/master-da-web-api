@@ -2,24 +2,37 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Product\Store;
+use App\Http\Requests\Product\Update;
+use App\Services\IService;
+use App\Services\ProductService;
+use Exception;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
+    public function __construct(public readonly ProductService $service)
+    {
+    }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        dd('product - index');
+        return response()->json(
+            $this->service->paginate()
+        );
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Store $request)
     {
-        dd('product - store');
+        return response()->json(
+            $this->service->store($request)
+        );
     }
 
     /**
@@ -27,15 +40,19 @@ class ProductController extends Controller
      */
     public function show(string $id)
     {
-        dd('product - show');
+        return response()->json(
+            $this->service->find($id)->show()
+        );
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Update $request, string $id)
     {
-        dd('product - update');
+        return response()->json(
+            $this->service->find($id)->update($request)
+        );
     }
 
     /**
@@ -43,6 +60,8 @@ class ProductController extends Controller
      */
     public function destroy(string $id)
     {
-        dd('product - destroy');
+        return response()->json(
+            $this->service->find($id)->delete()
+        );
     }
 }
