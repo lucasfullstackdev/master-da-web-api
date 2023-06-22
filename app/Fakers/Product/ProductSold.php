@@ -12,7 +12,7 @@ class ProductSold extends CustomFaker
     {
     }
 
-    public function productsSold(int $limit = 1): string
+    public function productsSold(int $limit = 1): array
     {
         $products = array_map(function () {
             return [
@@ -21,6 +21,6 @@ class ProductSold extends CustomFaker
             ];
         }, range(1, static::numberBetween(1, $limit)));
 
-        return json_encode($products);
+        return $products;
     }
 }

@@ -15,4 +15,26 @@ class Shopping extends Model
         'total',
         'user_id'
     ];
+
+    public function getProductsAttribute(string $products)
+    {
+        return json_decode($products);
+    }
+
+    public function setProductsAttribute(array $products)
+    {
+        $this->attributes['products'] = json_encode($products);
+        $this->setTotalAttribute();
+    }
+
+    public function setTotalAttribute()
+    {
+        $products = json_decode($this->attributes['products']);
+        $this->attributes['total'] = array_sum(array_column($products, 'price'));
+    }
+
+    public function client()
+    {
+        return $this->hasOne(User::class, 'id', 'user_id');
+    }
 }

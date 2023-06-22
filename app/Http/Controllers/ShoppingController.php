@@ -2,52 +2,32 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\Shopping\{Store, Update};
+use App\Services\ShoppingService;
 
 class ShoppingController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    use Crud;
+
+    public function __construct()
     {
-        dd('shopping - index');
+        $this->service = new ShoppingService();
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function store(Store $request)
     {
-        dd('shopping - store');
+        return $this->_store($request);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function update(Update $request, int $id)
     {
-        dd('shopping - show');
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        dd('shopping - update');
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        dd('shopping - destroy');
+        return $this->_update($request, $id);
     }
 
     public function client(int $id)
     {
-        dd('shopping - client');
+        return response()->json(
+            $this->service->with(['client'])->find($id)->show()
+        );
     }
 }

@@ -2,52 +2,32 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\Client\{Store, Update};
+use App\Services\ClientService;
 
 class ClientController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    use Crud;
+
+    public function __construct()
     {
-        dd('client - index');
+        $this->service = new ClientService();
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function store(Store $request)
     {
-        dd('client - store');
+        return $this->_store($request);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function update(Update $request, int $id)
     {
-        dd('client - show');
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        dd('client - update');
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        dd('client - destroy');
+        return $this->_update($request, $id);
     }
 
     public function shopping(int $id)
     {
-        dd('client - shopping');
+        return response()->json(
+            $this->service->with(['shopping'])->find($id)->show()
+        );
     }
 }
