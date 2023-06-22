@@ -1,66 +1,191 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+<p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
 
 <p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
 </p>
 
-## About Laravel
+<br><br><br>
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+<h1 align="center">Carrinho de compras</h1>
+<h4 align="center">Uma API REST para o gerenciamento de compras de produtos e seus clientes</h4>
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Sobre o projeto
+Este projeto tem como finalidade atestar meus conhecimentos nos seguintes pontos:
+- Desenvolvimento de aplicações LARAVEL
+- Desenvolvimento de API's REST utilizando LARAVEL
+- Roteamento com LARAVEL
+- Eloquent ORM
+- Autenticação com JWT
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Por que este projeto?
+- Este projeto faz parte do meu portfólio pessoal, uma maneira de comprovar meus conhecimentos em LARAVEL
+- A construção de API's faz parte da rotina de um desenvolvedor back-end, então esse projeto serviu como uma simulação da rotina real de um desenvolvedor back-end atuando com LARAVEL.
 
-## Learning Laravel
+## Sobre a modelagem do Banco de Dados
+- O desafio consistia na construção de uma API REST utilizando LARAVEL que simulasse um módulo de e-commerce.
+- Para o desafio foram criadas as seguintes tabelas:
+	- products
+	- shopping
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+# Sobre as Rotas
+## Produtos
+```php
+Method: GET
+Url: http://127.0.0.1:9000/api/v1/products
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+- Para listar todos os produtos
+```
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+```php
+Method: GET
+Url: http://127.0.0.1:9000/api/v1/products/{id}
 
-## Laravel Sponsors
+- Para listar um produto em específico
+```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+```php
+Method: POST
+Url: http://127.0.0.1:9000/api/v1/products
 
-### Premium Partners
+- Para Adicionar um novo produto
+{
+    "name": "Nome do produto",
+    "price": 129.92
+}
+```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+```php
+Method: PUT
+Url: http://127.0.0.1:9000/api/v1/products/{id}
 
-## Contributing
+- Para Atualizar um produto
+{
+    "name": "termostato digital - 2",
+    "price": 129.92
+}
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+```php
+Method: DELETE
+Url: http://127.0.0.1:9000/api/v1/products/{id}
+```
 
-## Code of Conduct
+## Clientes
+```php
+Method: GET
+Url: http://127.0.0.1:9000/api/v1/clients
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+- Para listar todos os clientes
+```
 
-## Security Vulnerabilities
+```php
+Method: GET
+Url: http://127.0.0.1:9000/api/v1/clients/{id}
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+- Para listar um cliente em específico
+```
 
-## License
+```php
+Method: POST
+Url: http://127.0.0.1:9000/api/v1/clients
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+- Para Adicionar um novo cliente
+{
+    "name": "Nome do cliente",
+    "email": "email.do.cliente@email.com.br",
+    "password": "senha"
+}
+```
+
+```php
+Method: PUT
+Url: http://127.0.0.1:9000/api/v1/clients/{id}
+
+- Para Atualizar uma classificação
+{
+    "name": "Nome do cliente",
+    "email": "email.do.cliente@email.com.br",
+    "password": "senha"
+}
+```
+
+```php
+Method: DELETE
+Url: http://127.0.0.1:9000/api/v1/clients/{id}
+```
+
+```php
+Method: GET
+Url: http://127.0.0.1:9000/api/v1/clients/{id}/shopping
+
+- Para retornar as compras do cliente
+```
+
+## Compras
+```php
+Method: GET
+Url: http://127.0.0.1:9000/api/v1/shopping
+
+- Para listar todas as compras
+```
+
+```php
+Method: GET
+Url: http://127.0.0.1:9000/api/v1/shopping/{id}
+
+- Para listar uma compra em específico
+```
+
+```php
+Method: POST
+Url: http://127.0.0.1:9000/api/v1/shopping
+
+- Para Adicionar uma nova compra
+{
+    "products": [
+        {
+            "name": "berço com colchão",
+            "price": 439.71
+        },
+        {
+            "name": "base nutribomba",
+            "price": 338.9
+        },
+        {
+            "name": "paralama bicicleta",
+            "price": 586.83
+        },
+        {
+            "name": "sapatilhas femininas moleca",
+            "price": 314.3
+        }
+    ],
+    "user_id": 1
+}
+```
+
+## Observações importantes
+
+## Setup
+Para a configuração do projeto no seu ambiente local, algumas etapas precisam ser seguidas:
+
+1. Criei um [repositório](https://github.com/lucasfullstackdev/development-environment) para que você possa rodar aplicações PHP/Vuejs de maneira mais simples utilizando [docker](https://www.docker.com/).
+
+2. Siga as orientações do projeto [development-environment](https://github.com/lucasfullstackdev/development-environment) para que você possa criar os containers necessários para execução de seus projetos
+
+## Observações importantes
+- O valor  **total** de uma compra (shopping) é calculado automaticamente ao passar os produtos relacionados a determinada compra
+- É aconselhável que você tenha em sua máquia o [postman](https://www.postman.com/) para que possa fazer os devidos testes sobre as rotas disponíveis nesta API.
+
+## Dependências e suas versões
+- PHP 8.2.1
+- LARAVEL 10x
+- Composer 2.5.8
+- Nodejs 19
+
+## Considerações finais
+- Esta API não representa uma amostra real, devendo ser utilizada apenas para se ter uma noção sobre como funciona um API REST.
+- Qualquer dúvida ou sugestão, entre em contato pelo e-mail: lucas.fullstack.dev@gmail.com
