@@ -14,6 +14,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+// dd(__DIR__ . '/api/v1/auth.php');
+
+Route::prefix('/auth')->group(realpath(__DIR__ . '/api/auth.php'));
+
+
+// Route::prefix('/v1')->middleware('auth:api')->group(function () {
+Route::prefix('/v1')->group(function () {
+    Route::prefix('/products')->group(realpath(__DIR__ . '/api/v1/products.php'));
+    Route::prefix('/shopping')->group(realpath(__DIR__ . '/api/v1/shopping.php'));
+    Route::prefix('/clients')->group(realpath(__DIR__ . '/api/v1/clients.php'));
 });
